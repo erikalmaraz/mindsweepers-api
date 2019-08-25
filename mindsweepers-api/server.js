@@ -52,14 +52,19 @@ app.use(helmet())
 // Handlers para las rutas según los modelos:
 app.use('/model', model)
 app.use('/product', product)
-app.use('/book-blue', bookBlue)
-app.use('/credit-configuration', creditConfiguration)
-app.use('/promotion', promotions)
 app.use('/client', client)
 app.use('/product-client', productClient)
 app.use('/credit', credit)
 app.use('/maintenance', maintenance)
 app.use('/maintenance-type', maintenanceType)
+
+
+/*
+app.use('/book-blue', bookBlue)
+app.use('/credit-configuration', creditConfiguration)
+app.use('/promotion', promotions)
+*/
+
 
 // Aumentamos el tiempo de espera a 3minutos
 server.timeout = 180000
