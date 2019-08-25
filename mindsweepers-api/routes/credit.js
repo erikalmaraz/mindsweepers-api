@@ -1,78 +1,68 @@
 'use strict'
 
-const debug = require('debug')('loyaltyCloud:api:user')
 const express = require('express')
 const asyncify = require('express-asyncify')
-const Joi = require('joi')
-const { Client } = require('mindsweepers-db')
-const basicauth = require('basic-auth')
+const BaseJoi = require('@hapi/joi')
+const JoiDate = require('@hapi/joi-date')
+const Joi = BaseJoi.extend(JoiDate)
 
-// Instancia del Router de express:
+const { credit } = require('mindsweepers-db')
+
 const routes = asyncify(express.Router())
 
-const bodySignUp = Joi.object().keys({
-  user: Joi.object().keys({
-    name: Joi.string().required(),
-    lastname: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().required()
-  }).required()
+const bodyCreate = Joi.object().keys({
+  date_ini: Joi.date().format('YYYY-MM-DD').utc(),
+  date_end: Joi.date().format('YYYY-MM-DD').utc(),
+  credit: Joi.number().required(),
+  amount: Joi.number().min(1).required(),
+  num_pagos: Joi.number().required(),
+  status: Jpi.boolean().required(),
+  product_client: Joi.string().required()
 })
 
-routes.post('/signup', async (req, res, next) => {
-  console.log('Request a client/signup')
+const bodySearch = Joi.object().keys({
+    created: Joi.array().items(Joi.date()).min(2).max(2),
+    status: Joi.boolean().required(),
+    amount: Joi.number().min(1).required(),
+    num_pagos: Joi.number().min(1).required()   
+})
+
+
+
+
+routes.post('/create', async (req, res, next) => {
+  console.log('Request a credit/create')
   try {
-    let { body } = req
-    await Joi.validate(body, bodySignUp)
-
-    let emailRes = await Client.searchClient({ email: body.client.email })
-    if (emailRes.length > 0) {
-      return res.status(500).send({ error: true, msg: 'Email registered' })
-    }
-
-    await User.createUser(body.user, req.merchant_id)
-
-
+    let conditions = req.body
+    await Joi.validate(conditions, bodyCreate)
+    let results = await credit.createCredit(conditions)
     let returnObject = {
       error: false,
-      results: [{
-        msg: 'Registered user successfully',
-        token: token
-      }]
+      total: results.lenght,
+      results: results
     }
-
     return res.status(200).send(returnObject)
   } catch (error) {
     next(error)
   }
 })
 
-routes.post('/signin', async (req, res, next) => {
-  console.log('Request a client/signin')
+routes.post('/search', async (req, res, next) => {
+  console.log('Request a credit/search')
   try {
-    let { body } = req
-    
-    let obj = {
-      email: body.client.name,
-      password: body.client.user.pass
-    }
-    
-    let userRes = await Client.searchClient(obj)
-    if (userRes.length === 0) {
-      return res.status(500).send({ error: true, msg: 'Incorrect user or password' })
-    }
-
+    let conditions = req.body
+    await Joi.validate(conditions, bodySearch)
+    let results = await productClient.searchCredit(conditions)
     let returnObject = {
       error: false,
-      results: [{
-        login: true
-      }]
+      total: results.lenght,
+      results: results
     }
-
     return res.status(200).send(returnObject)
   } catch (error) {
     next(error)
   }
 })
+
 
 module.exports = routes
