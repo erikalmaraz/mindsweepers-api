@@ -16,7 +16,7 @@ const bodyCreate = Joi.object().keys({
   credit: Joi.number().required(),
   amount: Joi.number().min(1).required(),
   num_pagos: Joi.number().required(),
-  status: Jpi.boolean().required(),
+  status: Joi.boolean().required(),
   product_client: Joi.string().required()
 })
 

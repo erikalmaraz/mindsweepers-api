@@ -3,11 +3,13 @@
 const debug = require('debug')('loyaltyCloud:api:user')
 const express = require('express')
 const asyncify = require('express-asyncify')
-const Joi = require('@hapi/joi')
+const BaseJoi = require('@hapi/joi')
+const JoiDate = require('@hapi/joi-date')
+const Joi = BaseJoi.extend(JoiDate)
 const { Client } = require('mindsweepers-db')
 
 // Instancia del Router de express:
-const routes = asyncify(express.Router())
+const router = asyncify(express.Router())
 
 
 const bodyCreate = Joi.object().keys({
@@ -31,20 +33,13 @@ const bodySearch = Joi.object().keys({
 })
 
 const bodyUpdate = Joi.object().keys({
-  person_id: Joi.string().min(18).max(18).token()
-    .required(),
-  name: Joi.string().max(100),
-  middlename: Joi.string().allow('').max(100),
-  lastname: Joi.string().max(100),
-  email: Joi.string().email(),
-  birthdate: Joi.date(),
-  gender: Joi.string(),
-  status: Joi.string(),
-  phones: Joi.array(),
-  init_date: Joi.date(),
-  metadata: Joi.any(),
-  user_id: Joi.string().min(18).max(18).token(),
-  profession: Joi.string(),
+  type: Joi.string().required(),
+  date: Joi.date().format('YYYY-MM-DD').utc(),
+  status: Joi.boolean().required(),
+  kilometers: Joi.number().required(),
+  comments: Joi.string().required(),
+  maintenance_type_id: Joi.string().required(),
+  product_client_id: Joi.string().required(),
 })
 
 const bodyDelete = Joi.object().keys({
