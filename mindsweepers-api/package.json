@@ -19,6 +19,7 @@
     "helmet": "^3.20.0",
     "http": "0.0.0",
     "mindsweepers-db": "file:../mindsweepers-db",
+    "natural": "^0.6.3",
     "serialize-error": "^4.1.0"
   },
   "devDependencies": {

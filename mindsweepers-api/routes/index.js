@@ -10,6 +10,7 @@ const productClient = require('./product_client')
 const credit = require('./credit')
 const maintenance = require('./maintenance')
 const maintenanceType = require('./maintenance_type')
+const feel= require('./feel')
 
 module.exports = {
   model,
@@ -22,4 +23,5 @@ module.exports = {
   credit,
   maintenance,
   maintenanceType,
+  feel
 }

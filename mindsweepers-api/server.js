@@ -20,7 +20,8 @@ const {
     productClient,
     credit,
     maintenance,
-    maintenanceType
+    maintenanceType,
+    feel
 } = require('./routes')
 
 const port = process.env.PORT || 3000
@@ -58,6 +59,7 @@ app.use('/credit', credit)
 app.use('/maintenance', maintenance)
 app.use('/maintenance-type', maintenanceType)
 app.use('/book-blue', bookBlue)
+app.use('/feel', feel)
 
 /*
 app.use('/book-blue', bookBlue)

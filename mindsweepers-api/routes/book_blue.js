@@ -54,6 +54,13 @@ routes.put('update', async(req, res, next) => {
     let dataUpdate = {}
     
     if(body.book_blue.year !== undefined && body.book_blue.year !== '') dataUpdate.year = body.book_blue.year
+    
+    dataUpdate.cylindrical = body.book_blue.cylindrical
+    dataUpdate.kilometers = body.book_blue.kilometers
+    dataUpdate.product_id = body.book_blue.product_id
+    dataUpdate.book_blue_id = body.book_blue.book_blue_id 
+
+    await bookBlue.updateBookBlue(dataUpdate)
 
     
     return res.status(200).send({error: false, message: 'El libro azul se actualizó correctamente'})
