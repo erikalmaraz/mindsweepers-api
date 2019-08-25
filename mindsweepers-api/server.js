@@ -57,7 +57,7 @@ app.use('/product-client', productClient)
 app.use('/credit', credit)
 app.use('/maintenance', maintenance)
 app.use('/maintenance-type', maintenanceType)
-
+app.use('/book-blue', bookBlue)
 
 /*
 app.use('/book-blue', bookBlue)
