@@ -2,3 +2,4 @@ mindsweepers-api/node_modules
 mindsweepers-api/package-lock.json
 mindsweepers-db/node_modules
 mindsweepers-db/package-lock.json
+mindsweepers-db/condifg.js
