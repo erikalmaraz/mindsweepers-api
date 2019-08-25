@@ -10,7 +10,7 @@ module.exports = class modelClass {
   updateModel(data){
     let update = []
     if(data.name !== undefined) update.push(` _name = '${data.name}'`)
-    if(data.category !== undefined) update.push(` category = '${data.name}'`)
+    if(data.category !== undefined) update.push(` category = '${data.category}'`)
 
     let cond = update.join(' , ')
     return postgres.one(`UPDATE model SET ${cond} WHERE id = ${data.model_id}`)
