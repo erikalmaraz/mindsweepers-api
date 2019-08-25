@@ -3,8 +3,7 @@
 const setupDatabase = require('../lib/db')
 const postgres = setupDatabase()
 
-module.exports = class productClass {
-
+module.exports = class creditConfigurationClass {
 
 
 }

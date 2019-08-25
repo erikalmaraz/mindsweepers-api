@@ -2,10 +2,24 @@
   "name": "mindsweepers-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "start-dev": "nodemon server.js"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "chalk": "^2.4.2",
+    "express": "^4.17.1",
+    "express-asyncify": "^1.0.0",
+    "helmet": "^3.20.0",
+    "http": "0.0.0",
+    "serialize-error": "^4.1.0",
+    "mindsweepers-db": "file:../mindsweepers-db"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
 }
