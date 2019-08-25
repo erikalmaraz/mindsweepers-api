@@ -5,6 +5,7 @@ const asyncify = require('express-asyncify')
 const Joi = require('joi')
 const { productClient } = require('mindsweepers-db')
 
+
 const routes = asyncify(express.Router())
 
 const bodyCreate = Joi.object().keys({

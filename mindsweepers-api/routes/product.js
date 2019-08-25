@@ -8,7 +8,7 @@ const {product} = require('mindsweepers-db')
 const routes = asyncify(express.Router())
 
 const bodyCreate = Joi.object().keys({
-  product: Joi.object.keys({
+  product: Joi.object().keys({
     name: Joi.string().required().label('Es necesario enviar un nombre'),
     detail: Joi.string().required().label('Es necesario enviar una descripción'),
     model_id: Joi.number().required().label('Es necesario enviar un modelo')
