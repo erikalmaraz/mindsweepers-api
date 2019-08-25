@@ -18,7 +18,6 @@ const {
     promotions,
     client,
     productClient,
-    productClient,
     credit,
     maintenance,
     maintenanceType
