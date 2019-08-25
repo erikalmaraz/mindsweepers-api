@@ -3,7 +3,7 @@
 const express = require('express')
 const asyncify = require('express-asyncify')
 const Joi = require('joi')
-const { SocialMedia } = require('alwayson-db')
+const { productClient } = require('mindsweepers-db')
 
 const routes = asyncify(express.Router())
 
