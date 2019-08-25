@@ -20,8 +20,8 @@ module.exports = class modelClass {
     let search = []
     if(data.name_exact !== undefined) search.push(` _name = '${data.name}'`)
     if(data.category_exact !== undefined) search.push(` category = '${data.name}'`)
-    if(data.name_exact !== undefined) search.push(` _name LIKE '%${data.name}%'`)
-    if(data.category_exact !== undefined) search.push(` category LIKE '%${data.name}%'`)
+    if(data.name !== undefined) search.push(` _name LIKE '%${data.name}%'`)
+    if(data.category !== undefined) search.push(` category LIKE '%${data.name}%'`)
     if(data.model_id !== undefined) search.push(` id = '${data.model_id}'`)
 
     let cond = search.join(' AND ')
